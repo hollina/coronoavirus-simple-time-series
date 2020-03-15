@@ -2,6 +2,8 @@
 
 This repository is a simple R script that replicates a figure circulated on-line. 
 
+Original figures can be found at these two links
+
 - https://www.motherjones.com/kevin-drum/2020/03/update-the-united-states-is-not-a-coronavirus-outlier/
 - https://www.ft.com/content/ff3affea-63c7-11ea-b3f3-fe4680ea68b5
 

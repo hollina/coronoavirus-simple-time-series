@@ -1,10 +1,11 @@
 # Coronavirus, simple time series
- create a simple time series of cases and deaths using coronavirus R package and  johns hopkins data 
 
-This is a simple R code to replicate a figure I've seen circulated on-line. A comparison of confirmed coronavirus cases to Italy where the date is `days since 100 confirmed cases`. Note: confirmed cases is certainly an undercount relative to true cases. See link at bottom of read me for more. 
+This repository is a simple R script that replicate a figure I've seen circulated on-line. It is a comparison of confirmed coronavirus cases by country to Italy. The comparison is in `days since 100 confirmed cases` rather than calendar date to account for differential start-dates in exposure. 
+
+Note: confirmed cases is certainly an undercount relative to true cases. See link at bottom of read me for more. 
 
 <figure style="float:left;">
-<img src="https://github.com/hollina/coronoavirus-simple-time-series/blob/master/output/coronavirus_cases_compared_to_italy.png" align="left"  width="400"  /> 
+<img src="https://github.com/hollina/coronoavirus-simple-time-series/blob/master/output/coronavirus_cases_compared_to_italy.png" align="left"  width="800"  /> 
 </figure>
 
 ## Source
@@ -18,7 +19,7 @@ This package pulls data from the Johns Hopkins University Center for Systems Sci
 The data also include deaths, which have less of a clear overlap with Italy. It is likely this death count does not capture all coronavirus related deaths. 
 
 <figure style="float:left;">
-<img src="https://github.com/hollina/coronoavirus-simple-time-series/blob/master/output/coronavirus_deaths_compared_to_italy.png" align="left"  width="400"  /> 
+<img src="https://github.com/hollina/coronoavirus-simple-time-series/blob/master/output/coronavirus_deaths_compared_to_italy.png" align="left"  width="800"  /> 
 </figure>
 
 ## True v confirmed cases

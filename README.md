@@ -1,6 +1,11 @@
 # Coronavirus, simple time series
 
-This repository is a simple R script that replicates a figure circulated on-line. It is a comparison of confirmed coronavirus cases by country to Italy. The comparison is in `days since 100 confirmed cases` rather than calendar date to account for differential start-dates in exposure.  
+This repository is a simple R script that replicates a figure circulated on-line. 
+
+- https://www.motherjones.com/kevin-drum/2020/03/update-the-united-states-is-not-a-coronavirus-outlier/
+- https://www.ft.com/content/ff3affea-63c7-11ea-b3f3-fe4680ea68b5
+
+It is a comparison of confirmed coronavirus cases by country to Italy. The comparison is in `days since 100 confirmed cases` rather than calendar date to account for differential start-dates in exposure.  
 
 Note: confirmed cases is certainly an undercount relative to true cases. See link at bottom of read me for more. 
 

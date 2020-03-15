@@ -28,7 +28,7 @@ Link for information on true v confirmed cases (I have not verified accuracy of 
 The basic idea is that true infections are not detected until roughly 10 to 14 days after they occur. 
 
 <figure style="float:left;">
-<img src="https://miro.medium.com/max/7168/1*r-ddYhoUtP_se6x-NOEinA.png" align="left"  width="400"  /> 
+<img src="https://miro.medium.com/max/7168/1*r-ddYhoUtP_se6x-NOEinA.png" align="left"  width="800"  /> 
 </figure>
 
 ## License

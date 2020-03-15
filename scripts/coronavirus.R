@@ -69,7 +69,7 @@ deaths_v_italy <- ggplot(data = subset(analysis, Country.Region != "Italy"), aes
   geom_line(alpha = 1, size = 1.5, color = "red") +
   theme_classic() +
   facet_wrap(vars(Country.Region)) +
-  ggtitle("The trajectory for deaths is more unclear. Mostly because deaths counts are still low in United States. Italy (dashed-line)") +
+  ggtitle("The trajectory for deaths is not as clear. Deaths counts are still low in US. Italy (dashed-line)") +
   ylab("Total confirmed deaths (certainly an undercount)") +
   xlab("Days since 100 confirmed cases")
 

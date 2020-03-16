@@ -5,8 +5,13 @@ if (!require(pacman)) {
   library(pacman)
 }
 
-p_load(ggrepel, tidyverse)
-p_load_gh("RamiKrispin/coronavirus")
+p_load(ggrepel, tidyverse, devtools, lubridate)
+
+# Ensure that most recent data are installed
+devtools::install_github("RamiKrispin/coronavirus", force = TRUE)
+library(coronavirus)
+
+# Options for log
 options("tidylog.display" = NULL)
 
 #########################################################################################################
@@ -47,6 +52,7 @@ analysis <- analysis %>%
 italy <- analysis %>%
   filter(Country.Region == "Italy") 
 
+
 #########################################################################################################
 # Cases: Make time trend of each country v italy on separate plot
 cases_v_italy <- ggplot(data = subset(analysis, Country.Region != "Italy"), aes(x = days_since, y = total_to_date_confirmed)) +
@@ -55,7 +61,8 @@ cases_v_italy <- ggplot(data = subset(analysis, Country.Region != "Italy"), aes(
     geom_line(alpha = 1, size = 1.5, color = "orange") +
     theme_classic() +
     facet_wrap(vars(Country.Region)) +
-    ggtitle("The US, Western Europe, and Iran are on similar coronavirus case trajectories as Italy (dashed-line)") +
+    ggtitle(paste0("The US, Western Europe, and Iran are on similar coronavirus case trajectories as Italy (dashed-line)\n
+            Most recent date: ", max(coronavirus$date))) +
     ylab("Total confirmed cases (certainly an undercount)") +
     xlab("Days since 100 confirmed cases")
 
@@ -69,7 +76,8 @@ deaths_v_italy <- ggplot(data = subset(analysis, Country.Region != "Italy"), aes
   geom_line(alpha = 1, size = 1.5, color = "red") +
   theme_classic() +
   facet_wrap(vars(Country.Region)) +
-  ggtitle("The trajectory for deaths is not as clear. Deaths counts are still low in US. Italy (dashed-line)") +
+  ggtitle(paste0("The trajectory for deaths is not as clear. Death counts are still low in US. Italy (dashed-line)\n
+  Most recent date: ", max(coronavirus$date))) +
   ylab("Total confirmed deaths (certainly an undercount)") +
   xlab("Days since 100 confirmed cases")
 
@@ -82,7 +90,8 @@ cases_all <- ggplot(data = analysis, aes(x = days_since, y = total_to_date_confi
   geom_line(data = subset(analysis, Country.Region == "US"), alpha = 1, size = 4, color = "black") +
   geom_line(data = subset(analysis, Country.Region == "US"), alpha = 1, size = 3.5, color = "orange") +
   theme_classic() +
-  ggtitle("The United States (in orange) looks more like Europe or Iran than Asia") +
+  ggtitle(paste0("The United States (in orange) looks more like Europe or Iran than Asia\n
+    Most recent date: ", max(coronavirus$date))) +
   ylab("Total confirmed cases (certainly an undercount)") +
   xlab("Days since 100 confirmed cases") +
   geom_label_repel(data = subset(analysis, max_days == days_since))
@@ -96,7 +105,8 @@ deaths_all <- ggplot(data = analysis, aes(x = days_since, y = total_to_date_deat
   geom_line(data = subset(analysis, Country.Region == "US"), alpha = 1, size = 4, color = "black") +
   geom_line(data = subset(analysis, Country.Region == "US"), alpha = 1, size = 3.5, color = "red") +
   theme_classic() +
-  ggtitle("Death count: The United States (in red) v other countries") +
+  ggtitle(paste0("Death count: The United States (in red) v other countries\n
+    Most recent date: ", max(coronavirus$date))) +
   ylab("Total deaths (certainly an undercount)") +
   xlab("Days since 100 confirmed cases") +
   geom_label_repel(data = subset(analysis, max_days == days_since))

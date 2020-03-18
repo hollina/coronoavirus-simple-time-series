@@ -12,7 +12,7 @@ It is a comparison of confirmed coronavirus cases by country to Italy. The compa
 Note: confirmed cases is certainly an undercount relative to true cases. See link at bottom of read me for more. 
 
 <figure style="float:left;">
-<img src="https://github.com/hollina/coronoavirus-simple-time-series/blob/master/output/coronavirus_cases_compared_to_italy.png" align="left"  width="800"  /> 
+<img src="https://github.com/hollina/coronoavirus-simple-time-series/blob/master/output/coronavirus_cases_compared_to_italy_and_south_korea.png" align="left"  width="800"  /> 
 </figure>
 
 ## Source
@@ -26,7 +26,7 @@ This package pulls data from the Johns Hopkins University Center for Systems Sci
 The data also include deaths, which have less of a clear overlap with Italy. It is likely this death count does not capture all coronavirus related deaths. 
 
 <figure style="float:left;">
-<img src="https://github.com/hollina/coronoavirus-simple-time-series/blob/master/output/coronavirus_deaths_compared_to_italy.png" align="left"  width="800"  /> 
+<img src="https://github.com/hollina/coronoavirus-simple-time-series/blob/master/output/coronavirus_deaths_compared_to_italy_and_south_korea.png" align="left"  width="800"  /> 
 </figure>
 
 ## True v confirmed cases

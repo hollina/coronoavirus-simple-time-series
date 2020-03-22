@@ -5,7 +5,7 @@ if (!require(pacman)) {
   library(pacman)
 }
 
-p_load(ggrepel, tidyverse, devtools, lubridate)
+p_load(ggrepel, tidyverse, devtools, lubridate, geofacet)
 
 # Options for log
 options("tidylog.display" = NULL)
@@ -325,6 +325,58 @@ tail(coronavirus)
 
 #########################################################################################################
 # Create a running count of confimred cases, deaths, and recoveries by country-day.
+
+us_states <- coronavirus %>% 
+  filter(Country.Region == "US") %>%
+  pivot_wider(names_from = type, values_from = cases) 
+
+us_states <- us_states %>%
+  group_by(Province.State) %>%
+  mutate(total_to_date_confirmed = cumsum(confirmed)) %>%
+  mutate(total_to_date_deaths = cumsum(death)) %>%
+  mutate(total_to_date_recoveries= cumsum(recovered)) %>%
+  select(-c(confirmed, death, recovered)) %>%
+  filter(total_to_date_confirmed >= 10) 
+
+us_states <- us_states %>%
+  group_by(Province.State) %>%
+  mutate(threshold_date = min(date)) %>%
+  mutate(days_since = date - threshold_date) %>%
+  mutate(max_days = max(days_since)) %>%
+  arrange(desc(Province.State))
+
+#########################################################################################################
+analysis_us <- coronavirus %>% 
+  group_by(Country.Region, date, type) %>%
+  summarise(total_cases = sum(cases)) %>%
+  pivot_wider(names_from = type, values_from = total_cases) 
+
+analysis_us <- analysis_us %>%
+  group_by(Country.Region) %>%
+  mutate(total_to_date_confirmed = cumsum(confirmed)) %>%
+  mutate(total_to_date_deaths = cumsum(death)) %>%
+  mutate(total_to_date_recoveries= cumsum(recovered)) %>%
+  select(-c(confirmed, death, recovered)) %>%
+  filter(total_to_date_confirmed >= 10) 
+
+# Drop China and Cruise ship. Add days since 100
+analysis_us <- analysis_us %>%
+  filter(Country.Region != "China") %>%
+  filter(Country.Region != "Cruise Ship") %>%
+  group_by(Country.Region) %>%
+  mutate(threshold_date = min(date)) %>%
+  mutate(days_since = date - threshold_date) %>%
+  mutate(max_days = max(days_since)) %>%
+  filter(max_days >= 10) %>% 
+  arrange(desc(Country.Region))
+
+# Make a separate italy dataset (it will be reference line)
+italy_us <- analysis_us %>%
+  filter(Country.Region == "Italy") 
+
+south_korea_us <- analysis_us %>%
+  filter(Country.Region == "Korea, South") 
+#########################################################################################################
 analysis <- coronavirus %>% 
   group_by(Country.Region, date, type) %>%
   summarise(total_cases = sum(cases)) %>%
@@ -337,7 +389,6 @@ analysis <- analysis %>%
   mutate(total_to_date_recoveries= cumsum(recovered)) %>%
   select(-c(confirmed, death, recovered)) %>%
   filter(total_to_date_confirmed >= 100) 
-
 
 # Drop China and Cruise ship. Add days since 100
 analysis <- analysis %>%
@@ -358,7 +409,24 @@ south_korea <- analysis %>%
   filter(Country.Region == "Korea, South") 
 
 #########################################################################################################
+us_state_case_plot <- ggplot(us_states, aes(x = days_since, y = log(total_to_date_confirmed + 1))) +
+  annotate(geom='line', x=italy_us$days_since,y=log(italy_us$total_to_date_confirmed + 1), linetype = "dashed") +
+  geom_line(alpha = 1, size = 2, color = "black") +
+  geom_line(alpha = 1, size = 1.5, color = "orange") +
+  coord_flip() +
+  theme_bw() +
+  facet_geo(~ Province.State, grid = "us_state_grid2") +
+  ggtitle(paste0("Natural log of confirmed coronavirus cases in each US state compared to Italy (dashed-line)\n \nMost recent date: ", max(coronavirus$date))) +
+  labs( 
+    x = "Natural log of confirmed coronavirus cases", 
+    y = "Days since 10 confirmed cases")
+
+
+ggsave(file = "output/coronavirus_ln_cases_by_state.png", plot = us_state_case_plot, height = 6, width = 9, dpi = 600)
+
+#########################################################################################################
 # Cases: Make time trend of each country v italy on separate plot
+
 cases_v_italy <- ggplot(data = subset(analysis, Country.Region != "Italy" & Country.Region != "Korea, South"), aes(x = days_since, y = total_to_date_confirmed)) +
   annotate(geom='line', x=italy$days_since,y=italy$total_to_date_confirmed, linetype = "dashed") +
   annotate(geom='line', x=south_korea$days_since,y=south_korea$total_to_date_confirmed, linetype = "solid") +

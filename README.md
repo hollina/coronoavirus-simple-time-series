@@ -17,11 +17,10 @@ A comparison of confirmed coronavirus cases by state to New York. The comparison
 </p>
 
 
-
 ## Source
 
-Country level data are  from the Johns Hopkins University Center for Systems Science and Engineering (JHU CCSE): https://github.com/CSSEGISandData/COVID-19
-State level data are from the New York Times: https://github.com/nytimes/covid-19-data
+- Country level data are  from the Johns Hopkins University Center for Systems Science and Engineering (JHU CCSE): https://github.com/CSSEGISandData/COVID-19
+- State level data are from the New York Times: https://github.com/nytimes/covid-19-data
 
 
 ## True v confirmed cases

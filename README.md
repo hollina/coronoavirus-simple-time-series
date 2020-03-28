@@ -7,6 +7,7 @@ A comparison of confirmed coronavirus deaths by country to Italy. The comparison
 <p align="center">
   <img  width="800" ssrc="https://github.com/hollina/coronoavirus-simple-time-series/blob/master/output/coronavirus_deaths_compared_to_italy.png" ">
 </p>
+                                                                                                                                                   
 ## Cases compared to New York
 
 A comparison of confirmed coronavirus cases by state to New York. The comparison is in `days since 10 confirmed cases` rather than calendar date to account for differential start-dates in exposure.  

@@ -4,11 +4,14 @@
 
 A comparison of confirmed coronavirus deaths by country to Italy. The comparison is in `days since 100 confirmed deaths` rather than calendar date to account for differential start-dates in exposure.  
 
-Note: confirmed deaths is likely an undercount relative to true deaths. See link at bottom of read me for more. 
-
 <figure style="float:left;">
 <img src="https://github.com/hollina/coronoavirus-simple-time-series/blob/master/output/coronavirus_deaths_compared_to_italy.png" align="left"  width="800"  /> 
 </figure>
+
+
+
+
+
 
 
 
@@ -22,6 +25,7 @@ A comparison of confirmed coronavirus cases by state to New York. The comparison
 <figure style="float:left;">
 <img src="https://github.com/hollina/coronoavirus-simple-time-series/blob/master/output/coronavirus_ln_cases_by_state.png" align="left"  width="800"  /> 
 </figure>
+
 
 ## Source
 

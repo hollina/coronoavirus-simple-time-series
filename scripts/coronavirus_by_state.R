@@ -51,8 +51,8 @@ us_state_case_plot <- ggplot(us_states, aes(x = days_since, y = log(cases))) +
 ggsave(file = "output/coronavirus_ln_cases_by_state.png", plot = us_state_case_plot, height = 6, width = 9, dpi = 600)
 
 
-us_state_death_plot <- ggplot(us_states, aes(x = days_since, y = log(deaths + 1))) +
-    annotate(geom='line', x = ny$days_since,y = log(ny$deaths + 1), linetype = "dashed") +
+us_state_death_plot <- ggplot(us_states, aes(x = days_since, y = log(deaths))) +
+    annotate(geom='line', x = ny$days_since,y = log(ny$deaths), linetype = "dashed") +
     geom_line(alpha = 1, size = 2, color = "black") +
     geom_line(alpha = 1, size = 1.5, color = "red") +
     coord_flip() +

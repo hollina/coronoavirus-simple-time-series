@@ -22,7 +22,7 @@ covid19_us_states <- read_csv(fpath)
 
 
 us_states <- covid19_us_states %>%
-    filter(cases >= 10) 
+    filter(cases >= 100) 
 
 us_states <- us_states %>%
     group_by(state) %>%
@@ -45,7 +45,7 @@ us_state_case_plot <- ggplot(us_states, aes(x = days_since, y = log(cases))) +
     ggtitle(paste0("Natural log of confirmed coronavirus cases in each US state compared to New York (dashed-line) \n \nMost recent date: ", max(us_states$date))) +
     labs( 
         x = "Natural log of confirmed coronavirus cases", 
-        y = "Days since 10 confirmed cases")
+        y = "Days since 100 confirmed cases")
 
 
 ggsave(file = "output/coronavirus_ln_cases_by_state.png", plot = us_state_case_plot, height = 6, width = 9, dpi = 600)
@@ -61,7 +61,7 @@ us_state_death_plot <- ggplot(us_states, aes(x = days_since, y = log(deaths))) +
     ggtitle(paste0("Natural log of coronavirus deaths in each US state compared to New York (dashed-line)\n \nMost recent date: ", max(us_states$date))) +
     labs( 
         x = "Natural log of coronavirus deaths", 
-        y = "Days since 10 confirmed cases")
+        y = "Days since 100 confirmed cases")
 
 
 ggsave(file = "output/coronavirus_ln_deaths_by_state.png", plot = us_state_death_plot, height = 6, width = 9, dpi = 600)
